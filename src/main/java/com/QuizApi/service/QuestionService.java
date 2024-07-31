@@ -1,10 +1,9 @@
 package com.QuizApi.service;
 
 import com.QuizApi.model.Question;
-import com.QuizApi.doa.QuestionDoa;
+import com.QuizApi.dao.QuestionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +14,11 @@ import java.util.List;
 public class QuestionService {
 
     @Autowired
-    QuestionDoa questionDoa;
+    QuestionDao questionDao;
     public ResponseEntity<List<Question>> getAllQuestion() {
 
         try {
-            return new ResponseEntity<List<Question>>(questionDoa.findAll() ,HttpStatus.OK) ;
+            return new ResponseEntity<List<Question>>(questionDao.findAll() ,HttpStatus.OK) ;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,7 +27,7 @@ public class QuestionService {
 
     public ResponseEntity<List<Question>> getQuestionByCategory( String category) {
         try {
-            return new ResponseEntity<>(questionDoa.findByCategory(category),HttpStatus.OK);
+            return new ResponseEntity<>(questionDao.findByCategory(category),HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,16 +35,16 @@ public class QuestionService {
     }
 
     public ResponseEntity<String> addQuestion(Question question) {
-         questionDoa.save(question);
+         questionDao.save(question);
         return new ResponseEntity<>("success",HttpStatus.CREATED);
     }
 
     public void deleteQuestion(Long id){
-        questionDoa.deleteById(id);
+        questionDao.deleteById(id);
     }
 
     public Question editeQuestion(Question question, String category) {
-        return questionDoa.save(question);
+        return questionDao.save(question);
     }
 }
 

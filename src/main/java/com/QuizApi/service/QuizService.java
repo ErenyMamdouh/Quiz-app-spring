@@ -1,12 +1,11 @@
 package com.QuizApi.service;
 
-import com.QuizApi.doa.QuestionDoa;
-import com.QuizApi.doa.QuizDao;
+import com.QuizApi.dao.QuestionDao;
+import com.QuizApi.dao.QuizDao;
 import com.QuizApi.model.Question;
 import com.QuizApi.model.QuestionWrapper;
 import com.QuizApi.model.Quiz;
 import com.QuizApi.model.Response;
-import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +22,10 @@ public class QuizService {
     QuizDao quizDao;
 
     @Autowired
-    QuestionDoa questionDoa;
+    QuestionDao questionDao;
     public ResponseEntity<String> createQuiz(String category, int num, String title) {
 
-        List<Question> questions = questionDoa.findRandomQuestionsByCategory(category, num);
+        List<Question> questions = questionDao.findRandomQuestionsByCategory(category, num);
 
         Quiz quiz=new Quiz();
         quiz.setTitle(title);

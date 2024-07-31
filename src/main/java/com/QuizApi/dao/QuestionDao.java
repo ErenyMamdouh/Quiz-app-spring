@@ -1,7 +1,6 @@
-package com.QuizApi.doa;
+package com.QuizApi.dao;
 
 import com.QuizApi.model.Question;
-import com.QuizApi.model.Quiz;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface QuestionDoa extends JpaRepository<Question,Long> {
+public interface QuestionDao extends JpaRepository<Question,Long> {
 
     List<Question> findByCategory(String category);
 
